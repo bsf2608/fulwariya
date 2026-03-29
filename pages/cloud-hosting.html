@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Hosting | Fulwariya Technologies</title>
+    <link rel="stylesheet" href="../css/landing.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="nav-content">
+            <a href="../index.html" class="logo"><i class="fa-solid fa-layer-group"></i><span>Fulwariya Tech</span></a>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-text-link">Home</a>
+                <a href="../index.html#services" class="nav-text-link" style="color:var(--accent-2)">Services</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero" style="min-height: 50vh; padding-top: 150px; padding-bottom: 20px;">
+        <div class="hero-content">
+            <div class="badge"><i class="fa-solid fa-cloud"></i> Managed Infrastructure</div>
+            <h1>Secure Enterprise <span class="gradient-text">Cloud Hosting</span></h1>
+            <p>The very same highly-available infrastructure that powers the FINBI SaaS.</p>
+        </div>
+    </header>
+
+    <section class="section-container" style="padding-top: 20px; padding-bottom: 100px;">
+        <div class="glass-panel" style="max-width: 900px; margin: 0 auto; text-align: left;">
+            <p style="font-size: 1.15rem; color: var(--text-muted); margin-bottom: 30px; line-height: 1.8;">
+                Fulwariya Technologies manages its own fleet of load-balanced API servers and high-IOPS databases. We offer dedicated deployment lanes utilizing <strong>Cloudflare Tunnels</strong> to secure raw origins, completely bypassing standard internet vulnerabilities.
+            </p>
+
+            <ul style="list-style-type: none; margin-bottom: 30px; padding: 0;">
+                <li style="margin-bottom: 15px; font-size: 1.1rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 15px;">
+                    <i class="fa-solid fa-check" style="color: #10b981; margin-right: 10px;"></i> <strong>Zero Trust Architecture:</strong> Tunnels ensure no exposed IPs.
+                </li>
+                <li style="margin-bottom: 15px; font-size: 1.1rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 15px;">
+                    <i class="fa-solid fa-check" style="color: #10b981; margin-right: 10px;"></i> <strong>Automated Failover:</strong> Node process managers guarantee maximum uptime.
+                </li>
+                <li style="margin-bottom: 15px; font-size: 1.1rem; padding-bottom: 15px;">
+                    <i class="fa-solid fa-check" style="color: #10b981; margin-right: 10px;"></i> <strong>PostgreSQL Backups:</strong> Hourly, encrypted database snapshots.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo" style="justify-content: center; margin-bottom: 10px; font-size: 1.2rem;">
+                <i class="fa-solid fa-layer-group"></i> Fulwariya Tech
+            </div>
+            <p>&copy; 2026 Fulwariya Technologies.</p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.querySelector('.glass-nav').style.background = window.scrollY > 50 ? 'rgba(10, 10, 15, 0.95)' : 'rgba(255, 255, 255, 0.03)';
+            document.querySelector('.glass-nav').style.boxShadow = window.scrollY > 50 ? '0 10px 30px rgba(0,0,0,0.5)' : 'none';
+        });
+    </script>
+</body>
+</html>
+
+

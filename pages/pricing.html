@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing — FINBI</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="../index.html" class="navbar-logo">
+      <div class="logo-icon">F</div>
+      FINBI
+    </a>
+    <div class="navbar-links">
+      <a href="../index.html#features">Features</a>
+      <a href="../index.html#how-it-works">How it works</a>
+      <a href="pricing.html" class="active">Pricing</a>
+    </div>
+    <div class="navbar-actions">
+      <a href="../auth/login.html" class="btn btn-ghost btn-sm">Sign in</a>
+      <a href="../auth/register.html" class="btn btn-primary btn-sm">Start Free Trial</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section style="padding:4rem 1.5rem 2rem;text-align:center;background:var(--bg);" class="hero-mesh">
+  <div class="section-tag fade-in" style="margin-bottom:0.875rem;">Simple pricing</div>
+  <h1 class="fade-up" style="color:#0f172a;font-size:clamp(2rem,4vw,3rem);margin-bottom:0.875rem;">Pay once. Own it forever.</h1>
+  <p class="fade-up stagger-1" style="color:#64748b;font-size:1.05rem;max-width:480px;margin:0 auto 2rem;">
+    Start free for 90 days. When you're ready, one payment — no subscriptions, no hidden fees.
+  </p>
+
+  <!-- Comparison toggle (decorative) -->
+  <div class="fade-up stagger-2" style="display:inline-flex;background:white;border:1px solid var(--border);border-radius:0.875rem;padding:0.25rem;gap:0.25rem;box-shadow:var(--shadow-sm);margin-bottom:0.5rem;">
+    <button onclick="setTab('free')" id="tabFree" class="btn btn-sm" style="border-radius:0.625rem;min-width:120px;" data-tab="free">Free Trial</button>
+    <button onclick="setTab('pro')" id="tabPro" class="btn btn-sm" style="border-radius:0.625rem;min-width:120px;" data-tab="pro">Professional</button>
+  </div>
+</section>
+
+<!-- Pricing cards -->
+<section style="padding:0 1.5rem 4rem;">
+  <div style="max-width:860px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:stretch;">
+
+    <!-- Free Trial -->
+    <div class="card card-hover fade-up stagger-1" style="padding:2.25rem;">
+      <div style="margin-bottom:1.75rem;">
+        <div class="badge badge-blue" style="margin-bottom:1rem;">FREE TRIAL</div>
+        <div style="display:flex;align-items:baseline;gap:0.375rem;">
+          <span style="font-size:3.5rem;font-weight:900;color:#0f172a;line-height:1;">₹0</span>
+          <span style="color:#64748b;font-size:0.875rem;">/ 90 days</span>
+        </div>
+        <p style="color:#64748b;font-size:0.875rem;margin-top:0.5rem;">No credit card required. Full access from day one.</p>
+      </div>
+
+      <div style="flex:1;margin-bottom:2rem;">
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.625rem;">
+          <li class="feature-li">All 19 modules included</li>
+          <li class="feature-li">Full double-entry accounting</li>
+          <li class="feature-li">GST compliance (GSTR-1, 3B)</li>
+          <li class="feature-li">POS, Inventory, Payroll</li>
+          <li class="feature-li">Unlimited transactions</li>
+          <li class="feature-li">Local encrypted database</li>
+          <li class="feature-li" style="color:#94a3b8;">
+            <span style="color:#d1d5db;margin-right:0.5rem;">○</span>90-day time limit
+          </li>
+        </ul>
+      </div>
+
+      <a href="../auth/register.html" class="btn btn-outline btn-full" style="height:2.875rem;font-size:0.925rem;">Start Free Trial</a>
+    </div>
+
+    <!-- Professional -->
+    <div class="card card-branded fade-up stagger-2" style="padding:2.25rem;background:linear-gradient(145deg,#0f172a,#1e3a8a);border-color:#1e40af;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;right:0;padding:0.4rem 1rem;background:#f59e0b;color:#0f172a;font-size:0.72rem;font-weight:800;border-radius:0 var(--radius-xl) 0 var(--radius-xl);letter-spacing:0.05em;">
+        BEST VALUE
+      </div>
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 80% 0%,rgba(59,130,246,.2) 0%,transparent 60%);pointer-events:none;"></div>
+      <div style="position:relative;z-index:1;">
+        <div style="margin-bottom:1.75rem;">
+          <div class="badge" style="background:rgba(26,86,219,.35);color:#93c5fd;margin-bottom:1rem;">PROFESSIONAL</div>
+          <div style="display:flex;align-items:baseline;gap:0.375rem;">
+            <span style="font-size:3.5rem;font-weight:900;color:white;line-height:1;">₹4,999</span>
+            <span style="color:#93c5fd;font-size:0.875rem;">one-time</span>
+          </div>
+          <p style="color:#94a3b8;font-size:0.875rem;margin-top:0.5rem;">Pay once, use forever. Free updates for 12 months.</p>
+        </div>
+
+        <div style="flex:1;margin-bottom:2rem;">
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.625rem;">
+            <li class="feature-li-white">Everything in Free Trial</li>
+            <li class="feature-li-white">No expiry — use forever</li>
+            <li class="feature-li-white">Free updates for 12 months</li>
+            <li class="feature-li-white">Priority email support</li>
+            <li class="feature-li-white">Multi-company support</li>
+            <li class="feature-li-white">All trial data preserved</li>
+            <li class="feature-li-white">Machine-bound license key</li>
+          </ul>
+        </div>
+
+        <a href="../auth/register.html" class="btn btn-white btn-full" style="height:2.875rem;font-size:0.925rem;">
+          Get Started — ₹4,999
+        </a>
+        <div style="display:flex;justify-content:center;gap:1.5rem;margin-top:1rem;">
+          <div style="display:flex;align-items:center;gap:0.375rem;font-size:0.75rem;color:#64748b;">
+            <svg width="12" height="12" fill="none" viewBox="0 0 12 12"><rect x="1.5" y="4" width="9" height="6.5" rx="1" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M3.5 4V3a2.5 2.5 0 015 0v1"/></svg>
+            Secure payment
+          </div>
+          <div style="display:flex;align-items:center;gap:0.375rem;font-size:0.75rem;color:#64748b;">
+            <svg width="12" height="12" fill="none" viewBox="0 0 12 12"><path stroke="currentColor" stroke-width="1.2" d="M9 3L5 8 3 6"/></svg>
+            Instant delivery
+          </div>
+          <div style="display:flex;align-items:center;gap:0.375rem;font-size:0.75rem;color:#64748b;">
+            <svg width="12" height="12" fill="none" viewBox="0 0 12 12"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.2"/><path stroke="currentColor" stroke-width="1.2" d="M6 3.5v3l1.5 1.5"/></svg>
+            30-day guarantee
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.feature-li { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.875rem; color: #374151; }
+.feature-li::before { content: '✓'; color: #10b981; font-weight: 700; flex-shrink: 0; margin-top: 0.05rem; }
+.feature-li-white { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.875rem; color: #cbd5e1; }
+.feature-li-white::before { content: '✓'; color: #6ee7b7; font-weight: 700; flex-shrink: 0; margin-top: 0.05rem; }
+</style>
+
+<!-- Comparison table -->
+<section style="padding:2rem 1.5rem 4rem;background:white;">
+  <div style="max-width:720px;margin:0 auto;">
+    <h2 class="fade-up" style="text-align:center;margin-bottom:2rem;font-size:1.5rem;color:#0f172a;">Feature comparison</h2>
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+      <table style="width:100%;border-collapse:collapse;">
+        <thead>
+          <tr style="background:#f8fafc;">
+            <th style="padding:0.875rem 1.25rem;text-align:left;font-size:0.8rem;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;border-bottom:1px solid var(--border);">Feature</th>
+            <th style="padding:0.875rem;text-align:center;font-size:0.8rem;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;border-bottom:1px solid var(--border);">Free Trial</th>
+            <th style="padding:0.875rem;text-align:center;font-size:0.8rem;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:0.05em;border-bottom:1px solid var(--border);">Professional</th>
+          </tr>
+        </thead>
+        <tbody id="compTable"></tbody>
+      </table>
+    </div>
+
+    <!-- Add-Ons Marketplace -->
+    <div style="grid-column: 1 / -1; margin-top: 3rem; text-align: center;">
+      <h2 style="font-size: 1.5rem; color: #0f172a; margin-bottom: 1rem;">Modular Add-Ons</h2>
+      <p style="color: #64748b; margin-bottom: 2rem;">Only pay for the specialized features your business needs.</p>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; text-align: left;">
+        <div class="card" style="padding: 1.25rem; border-color: #e2e8f0;">
+          <div style="font-size: 1.25rem; margin-bottom: 0.5rem;">🛒</div>
+          <div style="font-weight: 700; color: #0f172a; font-size: 0.9rem;">Point of Sale (POS)</div>
+          <p style="font-size: 0.75rem; color: #64748b; margin-bottom: 1rem;">Fast billing, barcode scanning, and multi-counter management.</p>
+          <div style="font-weight: 800; color: #0f172a;">₹1,499<span style="font-size: 0.7rem; color: #94a3b8; font-weight: 500;">/year</span></div>
+        </div>
+        <div class="card" style="padding: 1.25rem; border-color: #e2e8f0;">
+          <div style="font-size: 1.25rem; margin-bottom: 0.5rem;">🏭</div>
+          <div style="font-weight: 700; color: #0f172a; font-size: 0.9rem;">Manufacturing (MRP)</div>
+          <p style="font-size: 0.75rem; color: #64748b; margin-bottom: 1rem;">BOM, production orders, and material consumption tracking.</p>
+          <div style="font-weight: 800; color: #0f172a;">₹2,999<span style="font-size: 0.7rem; color: #94a3b8; font-weight: 500;">/year</span></div>
+        </div>
+        <div class="card" style="padding: 1.25rem; border-color: #e2e8f0;">
+          <div style="font-size: 1.25rem; margin-bottom: 0.5rem;">👥</div>
+          <div style="font-weight: 700; color: #0f172a; font-size: 0.9rem;">Human Resources & Payroll</div>
+          <p style="font-size: 0.75rem; color: #64748b; margin-bottom: 1rem;">Manage employees, payslips, PF/ESI, and automatic journal entries.</p>
+          <div style="font-weight: 800; color: #0f172a;">₹1,999<span style="font-size: 0.7rem; color: #94a3b8; font-weight: 500;">/year</span></div>
+        </div>
+        <div class="card" style="padding: 1.25rem; border-color: #e2e8f0;">
+          <div style="font-size: 1.25rem; margin-bottom: 0.5rem;">🌐</div>
+          <div style="font-weight: 700; color: #0f172a; font-size: 0.9rem;">E-Commerce Sync</div>
+          <p style="font-size: 0.75rem; color: #64748b; margin-bottom: 1rem;">Sync Amazon, Flipkart, and Shopify orders to your ledger.</p>
+          <div style="font-weight: 800; color: #0f172a;">₹2,499<span style="font-size: 0.7rem; color: #94a3b8; font-weight: 500;">/year</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- FAQ -->
+<section style="padding:2rem 1.5rem 5rem;background:#f8fafc;">
+  <div style="max-width:640px;margin:0 auto;">
+    <h2 class="fade-up" style="text-align:center;margin-bottom:2rem;font-size:1.5rem;color:#0f172a;">Frequently Asked Questions</h2>
+    <div id="faqList"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding:4rem 1.5rem;background:linear-gradient(135deg,#0f172a,#1e40af);text-align:center;">
+  <h2 style="color:white;margin-bottom:0.875rem;">Start your free trial today</h2>
+  <p style="color:#93c5fd;margin-bottom:2rem;font-size:1rem;">90 days · All features · No credit card</p>
+  <a href="../auth/register.html" class="btn btn-white btn-xl">Create Free Account</a>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div style="display:flex;align-items:center;gap:0.625rem;margin-bottom:0.75rem;">
+        <div class="logo-icon">F</div>
+        <span style="color:white;font-weight:800;font-size:1.15rem;">FINBI</span>
+      </div>
+      <p>Professional accounting for Indian businesses. Offline-first, GST-ready, one-time payment.</p>
+      <p style="margin-top:0.5rem;font-size:0.75rem;color:#334155;">© 2026 FINBI by Fulwariya Technologies. All rights reserved.</p>
+    </div>
+    <div class="footer-col"><h4>Product</h4><a href="../index.html#features">Features</a><a href="pricing.html">Pricing</a></div>
+    <div class="footer-col"><h4>Account</h4><a href="../auth/register.html">Free Trial</a><a href="../auth/login.html">Sign In</a></div>
+    <div class="footer-col"><h4>Support</h4><a href="mailto:support@fulwariya.in">support@fulwariya.in</a></div>
+  </div>
+</footer>
+
+<script src="../js/app.js"></script>
+<script>
+window.addEventListener('scroll', () => document.getElementById('navbar')?.classList.toggle('scrolled', window.scrollY > 20), { passive: true })
+new IntersectionObserver(entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('visible')), { threshold: 0.12 })
+  .observe && document.querySelectorAll('.fade-up,.fade-in').forEach(el => new IntersectionObserver(e => e.forEach(x => x.isIntersecting && x.target.classList.add('visible')), { threshold: 0.12 }).observe(el))
+
+// Tab
+function setTab(tab) {
+  document.getElementById('tabFree').className = tab === 'free' ? 'btn btn-primary btn-sm' : 'btn btn-ghost btn-sm'
+  document.getElementById('tabPro').className  = tab === 'pro'  ? 'btn btn-primary btn-sm' : 'btn btn-ghost btn-sm'
+}
+setTab('pro')
+
+// Comparison table
+const rows = [
+  ['Double-entry accounting', true, true],
+  ['GST (GSTR-1, GSTR-3B)', true, true],
+  ['Inventory management', true, true],
+  ['Multi-user RBAC', true, true],
+  ['Unlimited transactions', true, true],
+  ['POS module', 'Trial only', 'Add-on'],
+  ['Payroll & HR', 'Trial only', 'Add-on'],
+  ['Manufacturing / BOM', 'Trial only', 'Add-on'],
+  ['E-Commerce Sync', 'Trial only', 'Add-on'],
+  ['Offline-first', true, true],
+  ['Free updates', '12 months', '12 months'],
+  ['Email support', 'Standard', 'Priority'],
+  ['Multi-company', false, true],
+  ['Time limit', '90 days', 'None — forever'],
+]
+const tb = document.getElementById('compTable')
+rows.forEach((r, i) => {
+  const tr = document.createElement('tr')
+  tr.style.cssText = i % 2 === 0 ? 'background:#fff' : 'background:#f8fafc'
+  const fmtVal = v => {
+    if (v === true) return '<span style="color:#10b981;font-weight:700;">✓</span>'
+    if (v === false) return '<span style="color:#d1d5db;">—</span>'
+    return `<span style="font-size:0.8rem;color:#374151;font-weight:500;">${v}</span>`
+  }
+  tr.innerHTML = `<td style="padding:0.75rem 1.25rem;font-size:0.875rem;color:#374151;border-bottom:1px solid #f3f4f6;">${r[0]}</td><td style="text-align:center;border-bottom:1px solid #f3f4f6;">${fmtVal(r[1])}</td><td style="text-align:center;border-bottom:1px solid #f3f4f6;">${fmtVal(r[2])}</td>`
+  tb.appendChild(tr)
+})
+
+// FAQ
+const faqs = [
+  ['Is my trial data preserved after purchase?', 'Yes — 100%. All data entered during your trial is fully preserved. Enter your license key and continue from exactly where you left off. No re-entry required.'],
+  ['What are Add-Ons?', 'Add-Ons are specialized modules (like POS, Payroll, or MRP) that can be activated on top of your Professional license. This allows businesses with specific needs to get extra features without bloating the core app for everyone else.'],
+  ['Does it work without internet?', 'Yes. FINBI is completely offline-first. All your data is stored locally in an encrypted SQLite database on your machine. Internet is only needed if you choose to use optional features like e-invoice submission to the government portal or syncing e-commerce orders.'],
+  ['How many computers can I use it on?', 'One license is valid for one computer (machine-bound for security). For additional machines, contact us at support@fulwariya.in for multi-seat pricing.'],
+  ['What happens after the 12-month free updates period?', 'Your software continues to work forever — there is no expiry on the license itself. You just stop receiving new feature updates after 12 months. You can purchase a renewal at a discounted rate to continue receiving updates.'],
+  ['Can I transfer my license to a new computer?', 'Yes, contact support@fulwariya.in with your license key and we will assist with the transfer process.'],
+  ['What OS versions are supported?', 'Windows 10/11, macOS 12+, and Ubuntu 20.04+ (Linux AppImage). The app is built on Electron and runs natively on all platforms.'],
+]
+const faqList = document.getElementById('faqList')
+faqs.forEach((faq, i) => {
+  const div = document.createElement('div')
+  div.className = 'faq-item'
+  div.innerHTML = `
+    <button class="faq-q" onclick="toggleFaq(${i})" id="faqQ${i}" aria-expanded="false">
+      ${faq[0]}
+      <span class="faq-chevron">▼</span>
+    </button>
+    <div class="faq-a" id="faqA${i}">${faq[1]}</div>
+  `
+  faqList.appendChild(div)
+})
+function toggleFaq(i) {
+  const q = document.getElementById('faqQ' + i)
+  const a = document.getElementById('faqA' + i)
+  const open = q.getAttribute('aria-expanded') === 'true'
+  q.setAttribute('aria-expanded', !open)
+  a.classList.toggle('open', !open)
+}
+
+// Dynamic Checkout Logic
+document.addEventListener('DOMContentLoaded', () => {
+  const user = JSON.parse(localStorage.getItem('finbi_web_user') || sessionStorage.getItem('finbi_web_user') || '{}');
+  if (user && user.uuid) {
+    const actionLinks = document.querySelectorAll('a[href="../auth/register.html"]');
+    actionLinks.forEach(link => {
+      if (link.textContent.includes('Start Free Trial') || link.textContent.includes('Create Free Account')) {
+        link.textContent = 'Go to Dashboard';
+        link.href = '../auth/dashboard.html';
+      } else if (link.textContent.includes('Get Started')) {
+        link.textContent = 'Upgrade Now — ₹4,999';
+        link.href = '../auth/dashboard.html';
+      }
+    });
+    
+    const navActions = document.querySelector('.navbar-actions');
+    if (navActions) {
+      navActions.innerHTML = '<a href="../auth/dashboard.html" class="btn btn-primary btn-sm">My Dashboard</a>';
+    }
+  }
+});
+</script>
+</body>
+</html>
+
+

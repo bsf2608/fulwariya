@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Support | Fulwariya Technologies</title>
+    <link rel="stylesheet" href="../css/landing.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .contact-form input, .contact-form textarea, .contact-form select {
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 15px;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            font-family: 'Inter', sans-serif;
+        }
+        .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus {
+            outline: none;
+            border-color: var(--accent-1);
+            background: rgba(255,255,255,0.08);
+        }
+        .help-article {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--glass-border);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        .help-article h3 { color: var(--accent-finbi); margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2" style="background:var(--accent-finbi)"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="nav-content">
+            <a href="../index.html" class="logo"><i class="fa-solid fa-layer-group"></i><span>Fulwariya Tech</span></a>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-text-link">Home</a>
+                <a href="../auth/login.html" class="btn-primary-outline" style="padding: 8px 16px;">Sign In</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero" style="min-height: 40vh; padding-top: 150px; padding-bottom: 20px;">
+        <div class="hero-content">
+            <div class="badge" style="background: rgba(16,185,129,0.1); color: var(--accent-finbi); border-color: rgba(16,185,129,0.3);"><i class="fa-solid fa-life-ring"></i> Support Hub</div>
+            <h1>How can we <span class="gradient-text" style="background: linear-gradient(to right, #10b981, #047857); -webkit-background-clip: text; background-clip: text;">help?</span></h1>
+            <p>Documentation, feature guides, and comprehensive grievance lodging.</p>
+        </div>
+    </header>
+
+    <section class="section-container" style="padding-top: 0; padding-bottom: 100px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 40px; max-width: 1200px; margin: 0 auto;">
+            
+            <!-- Documentation Left Panel -->
+            <div class="glass-panel" style="flex: 1.5; min-width: 300px;">
+                <h2 style="font-size: 2rem; margin-bottom: 30px;"><i class="fa-solid fa-book"></i> Software Features & Uses</h2>
+                
+                <div class="help-article">
+                    <h3><i class="fa-solid fa-file-invoice-dollar"></i> FINBI Offline - GST Billing</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">FINBI Offline acts as a zero-latency desktop engine. You can configure up to 5 individual tax slabs (0%, 3%, 5%, 18%, 40%) per product. To generate an invoice, simply tap 'New Bill', scan a barcode, and the CGST/SGST drops directly into your GSTR-1 sheet automatically.</p>
+                </div>
+
+                <div class="help-article">
+                    <h3><i class="fa-solid fa-users-gear"></i> Role Based Access (RBAC)</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">If you are deploying FINBI SaaS or SurveyOg to multiple employees, you can restrict permissions. Go to Settings > Users. Admin accounts have full ledger access, while Cashier accounts can only process POS transactions without viewing the P&L reports.</p>
+                </div>
+
+                <div class="help-article">
+                    <h3><i class="fa-solid fa-cloud-arrow-up"></i> Cloud Connectivity</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Need to back up your offline database? Link your FINBI Desktop instance to the app.fulwariya.in portal via the "Sync" menu. Your encrypted SQLite file will safely transmit to the Cloudflare-tunneled backend nodes.</p>
+                </div>
+            </div>
+
+            <!-- Grievance Form Right Panel -->
+            <div class="glass-panel" style="flex: 1; min-width: 300px; background: rgba(20,20,25,0.7);">
+                <h2 style="font-size: 1.8rem; margin-bottom: 20px; color: #f43f5e;"><i class="fa-solid fa-triangle-exclamation"></i> Lodge a Grievance</h2>
+                <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 0.95rem;">Report technical bugs, payment issues, or software failures directly to the engineering team.</p>
+                
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Grievance logged. Support will contact you within 24 hours.');">
+                    <input type="text" placeholder="Full Name" required style="margin-bottom: 15px;">
+                    <input type="email" placeholder="Registered Email" required style="margin-bottom: 15px;">
+                    
+                    <select required style="margin-bottom: 15px; cursor: pointer;">
+                        <option value="" disabled selected style="color: var(--bg-color);">Select Software</option>
+                        <option value="finbi-saas" style="color: var(--bg-color);">FINBI SaaS Web App</option>
+                        <option value="finbi-offline" style="color: var(--bg-color);">FINBI Offline Desktop</option>
+                        <option value="surveyog" style="color: var(--bg-color);">SurveyOg Elite</option>
+                        <option value="other" style="color: var(--bg-color);">Other</option>
+                    </select>
+
+                    <select required style="margin-bottom: 15px; cursor: pointer;">
+                        <option value="" disabled selected style="color: var(--bg-color);">Issue Type</option>
+                        <option value="bug" style="color: var(--bg-color);">Technical Bug / Crash</option>
+                        <option value="billing" style="color: var(--bg-color);">Billing / Subscription Issue</option>
+                        <option value="feature" style="color: var(--bg-color);">Missing Feature</option>
+                        <option value="critical" style="color: var(--bg-color);">Critical Data Loss</option>
+                    </select>
+
+                    <textarea rows="5" placeholder="Describe the grievance in detail..." required style="margin-bottom: 15px;"></textarea>
+                    
+                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; background: #f43f5e; border-color: #f43f5e; box-shadow: 0 5px 15px rgba(244, 63, 94, 0.4);">Submit Grievance <i class="fa-solid fa-arrow-right"></i></button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo" style="justify-content: center; margin-bottom: 10px; font-size: 1.2rem;">
+                <i class="fa-solid fa-layer-group"></i> Fulwariya Tech
+            </div>
+            <p>&copy; 2026 Fulwariya Technologies.</p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.querySelector('.glass-nav').style.background = window.scrollY > 50 ? 'rgba(10, 10, 15, 0.95)' : 'rgba(255, 255, 255, 0.03)';
+            document.querySelector('.glass-nav').style.boxShadow = window.scrollY > 50 ? '0 10px 30px rgba(0,0,0,0.5)' : 'none';
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chanda - Founder & CEO | Fulwariya Technologies</title>
+    <link rel="stylesheet" href="../css/landing.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="shape shape-1" style="background:#ec4899"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="nav-content">
+            <a href="../index.html" class="logo">
+                <i class="fa-solid fa-layer-group"></i>
+                <span>Fulwariya Tech</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-text-link">Home</a>
+                <a href="../index.html#products" class="nav-text-link">Products</a>
+                <div class="nav-buttons">
+                    <a href="../auth/login.html" class="btn-primary-outline" style="padding: 8px 16px;">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" style="min-height: 50vh; padding-top: 150px; padding-bottom: 20px;">
+        <div class="hero-content">
+            <div class="badge" style="background: rgba(236, 72, 153, 0.1); color: var(--accent-3); border-color: var(--accent-3);">Visionary Leadership</div>
+            <h1 style="font-size: 5rem;">Meet <span class="gradient-text" style="background: linear-gradient(to right, #ec4899, #f43f5e); -webkit-background-clip: text; color: transparent;">Chanda</span></h1>
+            <p>Founder & CEO, Fulwariya Technologies</p>
+        </div>
+    </header>
+
+    <section class="section-container" style="padding-top: 20px; padding-bottom: 120px;">
+        <div class="glass-panel" style="max-width: 900px; margin: 0 auto; text-align: left;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px; font-weight: 800;">Making the Impossible <span class="gradient-text">Possible</span></h2>
+            
+            <p style="font-size: 1.15rem; color: var(--text-muted); margin-bottom: 25px; line-height: 1.8;">
+                Under the strategic leadership and unyielding dedication of <strong>Chanda</strong>, Fulwariya Technologies has rapidly evolved from a standard software suite into a next-generation ecosystem.
+            </p>
+            
+            <p style="font-size: 1.15rem; color: var(--text-muted); margin-bottom: 25px; line-height: 1.8;">
+                Overseeing everything from the bleeding-edge architecture of <span style="color:var(--accent-finbi); font-weight:600;">FINBI Accounting SaaS</span> to the highly-scalable infrastructure of SurveyOg Elite, Chanda acts as the operational heartbeat of the company. She ensures that managing complex multi-tenant cloud grids and high-availability offline-first environments happens flawlessly, behind the scenes, every single day.
+            </p>
+
+            <p style="font-size: 1.15rem; color: var(--text-muted); margin-bottom: 25px; line-height: 1.8;">
+                From global product development and team orchestration to long-term executive vision, she steers the technologies that empower Indian SMBs to seamlessly transition into the digital era affordably and securely. 
+            </p>
+            
+            <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid var(--glass-border); display: flex; align-items: center; gap: 20px;">
+                <div style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-1), var(--accent-3)); display:flex; justify-content:center; align-items:center; font-size: 1.5rem; color: white;">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.3rem;">Driven by execution.</h3>
+                    <p style="color: var(--text-muted);">Dedicated to engineering products that just work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo" style="justify-content: center; margin-bottom: 10px; font-size: 1.2rem;">
+                <i class="fa-solid fa-layer-group"></i> Fulwariya Tech
+            </div>
+            <p>&copy; 2026 Fulwariya Technologies. Secure, Scalable, and Yours.</p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.glass-nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(10, 10, 15, 0.95)';
+                nav.style.boxShadow = '0 10px 30px rgba(0,0,0,0.5)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.03)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
+
+

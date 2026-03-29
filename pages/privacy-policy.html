@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Fulwariya Technologies</title>
+    <link rel="stylesheet" href="../css/landing.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="shape shape-1" style="background:var(--accent-1)"></div>
+        <div class="shape shape-2"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="nav-content">
+            <a href="../index.html" class="logo"><i class="fa-solid fa-layer-group"></i><span>Fulwariya Tech</span></a>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-text-link">Home</a>
+                <a href="about-us.html" class="nav-text-link">Company</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero" style="min-height: 50vh; padding-top: 150px; padding-bottom: 20px;">
+        <div class="hero-content">
+            <div class="badge"><i class="fa-solid fa-shield-halved"></i> Privacy First</div>
+            <h1>Privacy <span class="gradient-text">Policy</span></h1>
+            <p>Your trust is our most valuable asset. Learn how we handle your data across all Fulwariya Tech apps.</p>
+        </div>
+    </header>
+
+    <section class="section-container" style="padding-top: 20px; padding-bottom: 100px;">
+        <div class="glass-panel" style="max-width: 900px; margin: 0 auto; text-align: left;">
+            <div style="font-size: 1rem; color: var(--text-muted); line-height: 1.7; display: flex; flex-direction: column; gap: 20px;">
+                <p>Fulwariya Technologies ("we," "us," or "our") operates several apps, including but not limited to SurveyOg Elite and our Games Portal. This Privacy Policy describes how we collect, use, and protect your information.</p>
+
+                <h4 style="color: var(--text-main); margin-bottom: -10px;">1. Information We Collect</h4>
+                <p>We collect information that you provide directly to us, such as when you create an account, fill out a survey, or contact us for support. This may include your name, email address, and any data captured during survey activities (like GPS coordinates for SurveyOg).</p>
+
+                <h4 style="color: var(--text-main); margin-bottom: -10px;">2. How We Use Your Information</h4>
+                <p>We use the collected information to provide, maintain, and improve our services, communicate with you, and ensure the security of our platform. For SurveyOg, GPS data is used solely for the purpose of verifying data collection locations as requested by your survey projects.</p>
+
+                <h4 style="color: var(--text-main); margin-bottom: -10px;">3. Data Security</h4>
+                <p>We use industry-standard encryption and security measures to protect your data. All survey responses in SurveyOg are encrypted during transit and at rest.</p>
+
+                <h4 style="color: var(--text-main); margin-bottom: -10px;">4. Data Sharing</h4>
+                <p>We do not sell your personal data to third parties. We only share information with third-party service providers (like Firebase or hosting providers) to the extent necessary to operate our apps.</p>
+
+                <h4 style="color: var(--text-main); margin-bottom: -10px;">5. Account Deletion</h4>
+                <p>You can request account deletion by emailing <a href="mailto:d.raj.fulwa@gmail.com" style="color: var(--accent-1);">d.raj.fulwa@gmail.com</a>. See our <a href="delete-account.html" style="color: var(--accent-1);">Delete Account</a> page for more details.</p>
+
+                <p style="margin-top: 20px; font-style: italic;">Last updated: March 30, 2026</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo" style="justify-content: center; margin-bottom: 10px; font-size: 1.2rem;">
+                <i class="fa-solid fa-layer-group"></i> Fulwariya Tech
+            </div>
+            <p>&copy; 2026 Fulwariya Technologies.</p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.querySelector('.glass-nav').style.background = window.scrollY > 50 ? 'rgba(10, 10, 15, 0.95)' : 'rgba(255, 255, 255, 0.03)';
+            document.querySelector('.glass-nav').style.boxShadow = window.scrollY > 50 ? '0 10px 30px rgba(0,0,0,0.5)' : 'none';
+        });
+    </script>
+</body>
+</html>

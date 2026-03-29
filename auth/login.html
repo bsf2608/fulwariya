@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src https://api.fulwariya.in; img-src 'self' data:;" />
+  <title>Sign In — FINBI</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body class="auth-page">
+
+  <!-- Left — Brand panel -->
+  <div class="auth-brand">
+    <div class="auth-brand-content">
+      <a href="../index.html" style="display:flex;align-items:center;gap:0.625rem;text-decoration:none;margin-bottom:3rem;">
+        <div class="logo-icon">F</div>
+        <span style="font-weight:800;font-size:1.2rem;">FINBI</span>
+      </a>
+
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
+        <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1rem;line-height:1.25;">
+          Your business,<br /><span style="color:#93c5fd;">anywhere.</span>
+        </h2>
+        <p style="color:#94a3b8;font-size:0.95rem;line-height:1.75;margin-bottom:2rem;">
+          Cloud-powered accounting with full GST compliance — access from any device, anytime.
+        </p>
+
+        <!-- Feature pills -->
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <div style="display:flex;align-items:center;gap:0.75rem;">
+            <div style="width:2rem;height:2rem;border-radius:0.5rem;background:rgba(26,86,219,.35);display:flex;align-items:center;justify-content:center;font-size:0.875rem;flex-shrink:0;">✓</div>
+            <span style="color:#cbd5e1;font-size:0.875rem;">Access from any browser</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;">
+            <div style="width:2rem;height:2rem;border-radius:0.5rem;background:rgba(26,86,219,.35);display:flex;align-items:center;justify-content:center;font-size:0.875rem;flex-shrink:0;">✓</div>
+            <span style="color:#cbd5e1;font-size:0.875rem;">GST-ready GSTR-1, GSTR-3B</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;">
+            <div style="width:2rem;height:2rem;border-radius:0.5rem;background:rgba(26,86,219,.35);display:flex;align-items:center;justify-content:center;font-size:0.875rem;flex-shrink:0;">✓</div>
+            <span style="color:#cbd5e1;font-size:0.875rem;">Multi-user collaboration</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;">
+            <div style="width:2rem;height:2rem;border-radius:0.5rem;background:rgba(26,86,219,.35);display:flex;align-items:center;justify-content:center;font-size:0.875rem;flex-shrink:0;">✓</div>
+            <span style="color:#cbd5e1;font-size:0.875rem;">Your data, secure cloud backup</span>
+          </div>
+        </div>
+      </div>
+
+      <p style="color:#475569;font-size:0.75rem;">© 2026 FINBI by Fulwariya Technologies</p>
+    </div>
+  </div>
+
+  <!-- Right — Form -->
+  <div class="auth-form">
+    <div class="auth-form-inner">
+      <!-- Mobile logo -->
+      <div style="display:none;text-align:center;margin-bottom:1.5rem;" class="mobile-logo-block">
+        <a href="../index.html" style="display:inline-flex;align-items:center;gap:0.5rem;text-decoration:none;font-weight:800;font-size:1.1rem;color:#0f172a;">
+          <div class="logo-icon">F</div> FINBI
+        </a>
+      </div>
+
+      <div style="margin-bottom:2rem;">
+        <h1 style="font-size:1.75rem;font-weight:800;color:#0f172a;margin-bottom:0.375rem;">Welcome back</h1>
+        <p style="color:#64748b;font-size:0.9rem;">Sign in to your FINBI account</p>
+      </div>
+
+      <div class="auth-card">
+        <div class="alert" id="alert"></div>
+
+        <form id="loginForm" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <div class="input-wrap">
+              <svg class="input-icon" width="16" height="16" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-width="1.4" d="M2 4h12v9H2V4zm0 0l6 5 6-5"/></svg>
+              <input class="form-input" id="email" type="email" placeholder="you@company.com" autocomplete="email" required />
+            </div>
+            <div class="form-error" id="emailError"></div>
+          </div>
+
+          <div class="form-group pwd-group">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;">
+              <label class="form-label" style="margin:0;" for="password">Password</label>
+              <a href="../forgot-password.html" style="font-size:0.78rem;font-weight:500;">Forgot password?</a>
+            </div>
+            <div class="input-wrap">
+              <svg class="input-icon" width="16" height="16" fill="none" viewBox="0 0 16 16"><rect x="3" y="7" width="10" height="7" rx="1.2" stroke="currentColor" stroke-width="1.4"/><path stroke="currentColor" stroke-width="1.4" d="M5 7V5a3 3 0 016 0v2"/></svg>
+              <input class="form-input" id="password" type="password" placeholder="Enter your password" autocomplete="current-password" required />
+              <button type="button" class="input-action" id="togglePwd" tabindex="-1" aria-label="Toggle password">
+                <svg id="eyeIcon" width="16" height="16" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-width="1.4" d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.4"/></svg>
+              </button>
+            </div>
+            <div class="form-error" id="passwordError"></div>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1.25rem;">
+            <input type="checkbox" id="rememberMe" style="width:1rem;height:1rem;accent-color:var(--brand);" />
+            <label for="rememberMe" style="font-size:0.875rem;color:#64748b;cursor:pointer;">Remember me for 30 days</label>
+          </div>
+
+          <button type="submit" id="submitBtn" class="btn btn-primary btn-full" style="height:2.75rem;font-size:0.925rem;">
+            Sign In
+          </button>
+        </form>
+
+        <!-- OTP login divider -->
+        <div style="display:flex;align-items:center;gap:0.75rem;margin:1.25rem 0;">
+          <div style="flex:1;height:1px;background:#e2e8f0;"></div>
+          <span style="font-size:0.75rem;color:#94a3b8;white-space:nowrap;">or</span>
+          <div style="flex:1;height:1px;background:#e2e8f0;"></div>
+        </div>
+
+        <div id="otpLoginGroup" style="display:none;">
+          <!-- OTP login form placeholder — toggled by JS -->
+        </div>
+
+        <button type="button" id="loginWithOtp"
+          style="width:100%;background:none;border:none;cursor:pointer;font-size:0.875rem;color:#3b82f6;font-weight:500;padding:0.25rem 0;text-align:center;">
+          Login with OTP instead
+        </button>
+
+        <div style="margin-top:1.25rem;text-align:center;font-size:0.875rem;color:#64748b;">
+          Don't have an account? <a href="register.html" style="font-weight:600;">Start free trial →</a>
+        </div>
+      </div>
+
+      <p style="text-align:center;font-size:0.75rem;color:#94a3b8;margin-top:1.5rem;">
+        Encrypted in transit · Cloud backup · GST-compliant
+      </p>
+    </div>
+  </div>
+
+<style>
+@media (max-width: 768px) {
+  .mobile-logo-block { display: block !important; }
+}
+</style>
+
+<script src="../js/app.js"></script>
+</body>
+</html>
+
+

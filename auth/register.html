@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src https://api.fulwariya.in https://api.postalpincode.in; img-src 'self' data:;" />
+  <title>Start Free Trial — FINBI</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .form-row { display: grid; gap: 0.75rem; }
+    .form-row-2 { grid-template-columns: 1fr 1fr; }
+    .form-row-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .form-group { margin-bottom: 0; }
+    .form-group.mb { margin-bottom: 1rem; }
+    .form-section-title {
+      font-size: 0.7rem; font-weight: 700; color: #94a3b8; text-transform: uppercase;
+      letter-spacing: 0.08em; margin: 1.1rem 0 0.6rem;
+    }
+    .select-input {
+      width: 100%; height: 2.45rem; padding: 0 0.75rem;
+      border: 1.5px solid #e2e8f0; border-radius: 0.5rem;
+      font-size: 0.875rem; color: #0f172a; background: #fff;
+      outline: none; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 0.75rem center;
+      padding-right: 2rem; transition: border-color .18s;
+    }
+    .select-input:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,.12); }
+    .select-input:disabled { background: #f8fafc; color: #94a3b8; }
+    .pincode-wrap { position: relative; }
+    .pincode-spinner {
+      display: none; position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%);
+      width: 14px; height: 14px; border: 2px solid #e2e8f0;
+      border-top-color: #3b82f6; border-radius: 50%; animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+    .pincode-status {
+      font-size: 0.72rem; margin-top: 0.25rem; min-height: 1rem;
+    }
+    .pincode-status.ok { color: #10b981; }
+    .pincode-status.err { color: #ef4444; }
+    @media (max-width: 480px) {
+      .form-row-2, .form-row-3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="auth-page">
+
+  <!-- Left — Brand panel -->
+  <div class="auth-brand">
+    <div class="auth-brand-content">
+      <a href="../index.html" style="display:flex;align-items:center;gap:0.625rem;text-decoration:none;margin-bottom:3rem;">
+        <div class="logo-icon">F</div>
+        <span style="font-weight:800;font-size:1.2rem;">FINBI</span>
+      </a>
+
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
+        <div style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.3rem 0.875rem;background:rgba(16,185,129,.2);border:1px solid rgba(16,185,129,.3);border-radius:9999px;color:#6ee7b7;font-size:0.75rem;font-weight:700;margin-bottom:1.5rem;width:fit-content;">
+          ✦ 90 days · All features · No card
+        </div>
+        <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:1rem;line-height:1.25;">
+          Start free,<br /><span style="color:#93c5fd;">own it forever.</span>
+        </h2>
+        <p style="color:#94a3b8;font-size:0.95rem;line-height:1.75;margin-bottom:2.5rem;">
+          90-day trial includes every feature. When you're ready, pay once (₹4,999) and never pay again.
+        </p>
+
+        <div style="position:relative;padding-left:1.5rem;">
+          <div style="position:absolute;left:0.3rem;top:0;bottom:0;width:1.5px;background:rgba(255,255,255,.1);"></div>
+          <div style="margin-bottom:1.25rem;position:relative;">
+            <div style="position:absolute;left:-1.3rem;top:0.2rem;width:0.65rem;height:0.65rem;border-radius:50%;background:#3b82f6;"></div>
+            <div style="font-size:0.8rem;font-weight:700;color:#93c5fd;margin-bottom:0.15rem;">Day 1</div>
+            <div style="font-size:0.825rem;color:#94a3b8;">Full access — all modules unlocked immediately.</div>
+          </div>
+          <div style="margin-bottom:1.25rem;position:relative;">
+            <div style="position:absolute;left:-1.3rem;top:0.2rem;width:0.65rem;height:0.65rem;border-radius:50%;background:#f59e0b;"></div>
+            <div style="font-size:0.8rem;font-weight:700;color:#fcd34d;margin-bottom:0.15rem;">Day 76</div>
+            <div style="font-size:0.825rem;color:#94a3b8;">14-day reminder banner — no disruption to your work.</div>
+          </div>
+          <div style="position:relative;">
+            <div style="position:absolute;left:-1.3rem;top:0.2rem;width:0.65rem;height:0.65rem;border-radius:50%;background:rgba(255,255,255,.15);"></div>
+            <div style="font-size:0.8rem;font-weight:700;color:#cbd5e1;margin-bottom:0.15rem;">Day 90+</div>
+            <div style="font-size:0.825rem;color:#94a3b8;">Activate with license key — all data preserved, no re-entry.</div>
+          </div>
+        </div>
+      </div>
+
+      <p style="color:#475569;font-size:0.75rem;">© 2026 FINBI by Fulwariya Technologies</p>
+    </div>
+  </div>
+
+  <!-- Right — Form -->
+  <div class="auth-form">
+    <div class="auth-form-inner">
+      <div style="text-align:center;margin-bottom:2rem;">
+        <h1 style="font-size:1.65rem;font-weight:800;color:#0f172a;margin-bottom:0.375rem;">Create your account</h1>
+        <p style="color:#64748b;font-size:0.875rem;">Start your 90-day free trial — no credit card required</p>
+      </div>
+
+      <div class="auth-card">
+        <div class="alert" id="alert"></div>
+
+        <form id="registerForm" novalidate>
+
+          <!-- ── Personal Details ────────────────────────────── -->
+          <div class="form-section-title">Personal Details</div>
+
+          <!-- First / Middle / Last -->
+          <div class="form-row form-row-3 mb">
+            <div class="form-group">
+              <label class="form-label" for="firstName">First Name <span style="color:#ef4444;">*</span></label>
+              <div class="input-wrap">
+                <svg class="input-icon" width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="5" r="2.5" stroke="currentColor" stroke-width="1.4"/><path stroke="currentColor" stroke-width="1.4" d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+                <input class="form-input" id="firstName" type="text" placeholder="Rajesh" autocomplete="given-name" required />
+              </div>
+              <div class="form-error" id="firstNameError"></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="middleName">Middle Name</label>
+              <div class="input-wrap">
+                <svg class="input-icon" width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="5" r="2.5" stroke="currentColor" stroke-width="1.4"/><path stroke="currentColor" stroke-width="1.4" d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+                <input class="form-input" id="middleName" type="text" placeholder="Kumar" autocomplete="additional-name" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="lastName">Last Name <span style="color:#ef4444;">*</span></label>
+              <div class="input-wrap">
+                <svg class="input-icon" width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="5" r="2.5" stroke="currentColor" stroke-width="1.4"/><path stroke="currentColor" stroke-width="1.4" d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+                <input class="form-input" id="lastName" type="text" placeholder="Sharma" autocomplete="family-name" required />
+              </div>
+              <div class="form-error" id="lastNameError"></div>
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="form-group mb">
+            <label class="form-label" for="phone">Mobile Number <span style="color:#ef4444;">*</span></label>
+            <div class="input-wrap">
+              <svg class="input-icon" width="16" height="16" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-width="1.4" d="M3 2h3l1.5 3.5-1.8 1.1a8.5 8.5 0 004.7 4.7L12.5 9.5 16 11v3a1 1 0 01-1 1A13 13 0 012 3a1 1 0 011-1z"/></svg>
+              <input class="form-input" id="phone" type="tel" placeholder="9876543210" autocomplete="tel" maxlength="10" />
+            </div>
+            <div class="form-error" id="phoneError"></div>
+          </div>
+
+          <!-- ── Location Details ────────────────────────────── -->
+          <div class="form-section-title">Location</div>
+
+          <!-- Pincode (auto-fill) -->
+          <div class="form-group mb">
+            <label class="form-label" for="pincode">Pincode <span style="color:#94a3b8;font-weight:400;">(auto-fills state &amp; district)</span></label>
+            <div class="input-wrap pincode-wrap">
+              <svg class="input-icon" width="16" height="16" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-width="1.4" d="M8 1a5 5 0 010 10C5 11 2 8.5 2 6a6 6 0 0112 0c0 2.5-3 5-6 5z"/><circle cx="8" cy="6" r="1.5" stroke="currentColor" stroke-width="1.4"/></svg>
+              <input class="form-input" id="pincode" type="text" placeholder="110001" maxlength="6" inputmode="numeric" />
+              <div class="pincode-spinner" id="pincodeSpinner"></div>
+            </div>
+            <div class="pincode-status" id="pincodeStatus"></div>
+          </div>
+
+          <!-- State + District -->
+          <div class="form-row form-row-2 mb">
+            <div class="form-group">
+              <label class="form-label" for="state">State / UT <span style="color:#ef4444;">*</span></label>
+              <select class="select-input" id="state" required>
+                <option value="">Select State</option>
+              </select>
+              <div class="form-error" id="stateError"></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="district">District <span style="color:#ef4444;">*</span></label>
+              <select class="select-input" id="district" disabled required>
+                <option value="">Select District</option>
+              </select>
+              <div class="form-error" id="districtError"></div>
+            </div>
+          </div>
+
+          <!-- City / Town / Village -->
+          <div class="form-group mb">
+            <label class="form-label" for="city">City / Town / Village <span style="color:#ef4444;">*</span></label>
+            <div class="input-wrap">
+              <svg class="input-icon" width="16" height="16" fill="none" viewBox="0 0 16 16"><rect x="2" y="6" width="12" height="8" rx="1" stroke="currentColor" stroke-width="1.4"/><path stroke="currentColor" stroke-width="1.4" d="M5 14V9h2v5M9 14V9h2v5M1 10h14M8 2l6 4H2l6-4z"/></svg>
+              <input class="form-input" id="city" type="text" placeholder="Type your village, town, or city name" autocomplete="address-level2" required />
+            </div>
+            <div class="form-error" id="cityError"></div>
+          </div>
+
+          <!-- ── Business Details ───────────────────────────── -->
+          <div class="form-section-title">Business (Optional)</div>
+
+          <div class="form-group mb">
+            <label class="form-label" for="businessName">Business Name <span style="color:#94a3b8;font-weight:400;">(optional)</span></label>
+            <div class="input-wrap">
+              <svg class="input-icon" width="16" height="16" fill="none" viewBox="0 0 16 16"><rect x="2" y="4" width="12" height="10" rx="1.2" stroke="currentColor" stroke-width="1.4"/><path stroke="currentColor" stroke-width="1.4" d="M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1"/></svg>
+              <input class="form-input" id="businessName" type="text" placeholder="Sharma Traders Pvt Ltd" autocomplete="organization" />
+            </div>
+          </div>
+
+          <!-- ── Account Credentials ─────────────────────────── -->
+          <div class="form-section-title">Account Credentials</div>
+
+          <div class="form-group mb">
+            <label class="form-label" for="email">Email Address <span style="color:#ef4444;">*</span></label>
+            <div class="input-wrap">
+              <svg class="input-icon" width="16" height="16" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-width="1.4" d="M2 4h12v9H2V4zm0 0l6 5 6-5"/></svg>
+              <input class="form-input" id="email" type="email" placeholder="you@company.com" autocomplete="email" required />
+            </div>
+            <div class="form-error" id="emailError"></div>
+          </div>
+
+          <div class="form-row form-row-2 mb">
+            <div class="form-group">
+              <label class="form-label" for="password">Password <span style="color:#ef4444;">*</span></label>
+              <div class="input-wrap">
+                <svg class="input-icon" width="16" height="16" fill="none" viewBox="0 0 16 16"><rect x="3" y="7" width="10" height="7" rx="1.2" stroke="currentColor" stroke-width="1.4"/><path stroke="currentColor" stroke-width="1.4" d="M5 7V5a3 3 0 016 0v2"/></svg>
+                <input class="form-input" id="password" type="password" placeholder="Min. 8 characters" autocomplete="new-password" required />
+                <button type="button" class="input-action" id="togglePwd" tabindex="-1" aria-label="Toggle password">
+                  <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-width="1.4" d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.4"/></svg>
+                </button>
+              </div>
+              <div class="pwd-strength" id="pwdStrength" style="display:none;">
+                <div class="pwd-strength-bar">
+                  <div class="pwd-seg" id="seg1"></div><div class="pwd-seg" id="seg2"></div>
+                  <div class="pwd-seg" id="seg3"></div><div class="pwd-seg" id="seg4"></div>
+                </div>
+                <div class="pwd-label" id="pwdLabel"></div>
+              </div>
+              <div class="form-error" id="passwordError"></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="confirmPassword">Confirm Password <span style="color:#ef4444;">*</span></label>
+              <div class="input-wrap">
+                <svg class="input-icon" width="16" height="16" fill="none" viewBox="0 0 16 16"><rect x="3" y="7" width="10" height="7" rx="1.2" stroke="currentColor" stroke-width="1.4"/><path stroke="currentColor" stroke-width="1.4" d="M5 7V5a3 3 0 016 0v2"/></svg>
+                <input class="form-input" id="confirmPassword" type="password" placeholder="Re-enter password" autocomplete="new-password" required />
+              </div>
+              <div class="form-error" id="confirmPasswordError"></div>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:flex-start;gap:0.5rem;margin-bottom:1.25rem;">
+            <input type="checkbox" id="agree" style="width:1rem;height:1rem;accent-color:var(--brand);margin-top:0.15rem;flex-shrink:0;" required />
+            <label for="agree" style="font-size:0.8rem;color:#64748b;line-height:1.55;cursor:pointer;">
+              I agree to the <a href="#" style="font-weight:600;">Terms of Service</a> and <a href="#" style="font-weight:600;">Privacy Policy</a>. I understand that my data is stored securely on Fulwariya's servers.
+            </label>
+          </div>
+
+          <button type="submit" id="submitBtn" class="btn btn-primary btn-full" style="height:2.75rem;font-size:0.925rem;">
+            Create Account &amp; Start Trial
+          </button>
+        </form>
+
+        <div style="margin-top:1.25rem;text-align:center;font-size:0.875rem;color:#64748b;">
+          Already have an account? <a href="login.html" style="font-weight:600;">Sign in →</a>
+        </div>
+      </div>
+
+      <!-- Trust badges -->
+      <div style="display:flex;gap:1.25rem;justify-content:center;margin-top:1.25rem;flex-wrap:wrap;">
+        <div class="trust-badge">
+          <svg width="13" height="13" fill="none" viewBox="0 0 13 13"><path d="M6.5 1L8 4.4l3.6.5-2.6 2.5.6 3.6-3.1-1.6-3.1 1.6.6-3.6-2.6-2.5 3.6-.5L6.5 1z" fill="#10b981"/></svg>
+          No credit card required
+        </div>
+        <div class="trust-badge">
+          <svg width="13" height="13" fill="none" viewBox="0 0 13 13"><rect x="2.5" y="5.5" width="8" height="6" rx="1" stroke="#10b981" stroke-width="1.3"/><path stroke="#10b981" stroke-width="1.3" d="M4.5 5.5V4a2 2 0 014 0v1.5"/></svg>
+          Encrypted &amp; secure
+        </div>
+        <div class="trust-badge">
+          <svg width="13" height="13" fill="none" viewBox="0 0 13 13"><path stroke="#10b981" stroke-width="1.3" d="M9.5 2L5 7.5 3.5 6"/></svg>
+          Cancel anytime
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="../js/app.js"></script>
+</body>
+</html>
+
+

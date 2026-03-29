@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portal — FINBI</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* ── Extra dashboard styles ───────────────────────────────────── */
+    .dash-layout { display:flex; min-height:100vh; }
+    .dash-sidebar {
+      width:220px; min-height:100vh; background:#0f172a; display:flex;
+      flex-direction:column; flex-shrink:0; position:sticky; top:0; height:100vh; overflow-y:auto;
+    }
+    .dash-sidebar-logo {
+      display:flex; align-items:center; gap:0.625rem; padding:1.25rem 1rem;
+      font-weight:800; font-size:0.95rem; color:#f1f5f9; text-decoration:none;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .dash-nav { padding:0.75rem 0; flex:1; }
+    .dash-nav-section {
+      font-size:0.65rem; font-weight:700; color:#475569; letter-spacing:0.1em;
+      text-transform:uppercase; padding:0.75rem 1rem 0.35rem;
+    }
+    .dash-nav a {
+      display:flex; align-items:center; gap:0.625rem; padding:0.55rem 1rem;
+      font-size:0.825rem; color:#94a3b8; text-decoration:none; border-radius:0;
+      transition:all .15s; position:relative;
+    }
+    .dash-nav a:hover { color:#f1f5f9; background:rgba(255,255,255,.05); }
+    .dash-nav a.active {
+      color:#fff; background:rgba(59,130,246,.15);
+      border-right:3px solid #3b82f6;
+    }
+    .dash-nav a .nav-badge {
+      margin-left:auto; font-size:0.65rem; background:#ef4444; color:#fff;
+      border-radius:999px; padding:0.1rem 0.45rem; font-weight:700;
+    }
+    .dash-main { flex:1; display:flex; flex-direction:column; min-width:0; }
+    .dash-topbar {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0.75rem 1.5rem; background:#fff; border-bottom:1px solid #e2e8f0;
+      position:sticky; top:0; z-index:10;
+    }
+    .dash-content { padding:1.5rem; flex:1; }
+
+    .kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:1.25rem; }
+    .kpi-card {
+      background:#fff; border-radius:var(--radius-xl); border:1px solid #e2e8f0;
+      padding:1.125rem 1.25rem; display:flex; flex-direction:column; gap:0.375rem;
+    }
+    .kpi-icon { font-size:1.4rem; margin-bottom:0.125rem; }
+    .kpi-label { font-size:0.72rem; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.05em; }
+    .kpi-value { font-size:1.5rem; font-weight:800; color:#0f172a; line-height:1.1; }
+    .kpi-sub { font-size:0.72rem; color:#94a3b8; }
+
+    .card { background:#fff; border-radius:var(--radius-xl); border:1px solid #e2e8f0; }
+    .section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; }
+    .section-title { font-size:0.9rem; font-weight:700; color:#0f172a; }
+    .section-sub { font-size:0.775rem; color:#64748b; }
+
+    .info-row { display:flex; justify-content:space-between; align-items:center; padding:0.6rem 0; border-bottom:1px solid #f3f4f6; font-size:0.85rem; }
+    .info-row:last-child { border-bottom:none; }
+    .info-label { color:#94a3b8; }
+    .info-value { font-weight:500; color:#0f172a; text-align:right; max-width:60%; word-break:break-word; }
+
+    .quick-actions { display:grid; grid-template-columns:repeat(3,1fr); gap:0.75rem; }
+    .qa-btn {
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      gap:0.5rem; padding:1rem 0.75rem; background:#f8fafc; border:1px solid #e2e8f0;
+      border-radius:0.75rem; text-decoration:none; color:#374151; transition:all .18s;
+      cursor:pointer; font-size:0.8rem; font-weight:600; text-align:center;
+    }
+    .qa-btn:hover { background:#eff6ff; border-color:#bfdbfe; color:#1d4ed8; transform:translateY(-2px); }
+    .qa-btn .qa-icon { font-size:1.5rem; }
+
+    .notif-item { display:flex; gap:0.75rem; align-items:flex-start; padding:0.75rem 0; border-bottom:1px solid #f3f4f6; }
+    .notif-item:last-child { border-bottom:none; }
+    .notif-dot { width:0.5rem; height:0.5rem; border-radius:50%; margin-top:0.3rem; flex-shrink:0; }
+    .notif-dot.info { background:#3b82f6; }
+    .notif-dot.warn { background:#f59e0b; }
+    .notif-dot.success { background:#10b981; }
+    .notif-text { font-size:0.8rem; color:#374151; line-height:1.5; }
+    .notif-time { font-size:0.7rem; color:#94a3b8; margin-top:0.15rem; }
+
+    .health-row { display:flex; align-items:center; justify-content:space-between; padding:0.5rem 0; }
+    .health-label { font-size:0.8rem; color:#374151; }
+    .health-dot { display:flex; align-items:center; gap:0.4rem; font-size:0.775rem; font-weight:600; }
+    .health-dot::before { content:''; width:0.5rem; height:0.5rem; border-radius:50%; }
+    .health-dot.ok::before { background:#10b981; }
+    .health-dot.ok { color:#065f46; }
+    .health-dot.warn::before { background:#f59e0b; }
+    .health-dot.warn { color:#92400e; }
+
+    .progress-wrap { height:6px; background:#f1f5f9; border-radius:9999px; overflow:hidden; }
+    .progress-fill { height:100%; border-radius:9999px; background:linear-gradient(90deg,#3b82f6,#6366f1); transition:width .6s ease; }
+
+    .user-avatar-lg {
+      width:3rem; height:3rem; border-radius:50%; font-size:1.2rem; font-weight:800;
+      display:flex; align-items:center; justify-content:center;
+      background:linear-gradient(135deg,#dbeafe,#e0e7ff); color:#1d4ed8;
+    }
+    .sidebar-user {
+      padding:0.875rem 1rem; border-top:1px solid rgba(255,255,255,.06);
+      display:flex; align-items:center; gap:0.625rem;
+    }
+    .sidebar-user-name { font-size:0.8rem; font-weight:600; color:#e2e8f0; }
+    .sidebar-user-email { font-size:0.68rem; color:#64748b; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:120px; }
+
+    /* ── Marketplace Styles ───────────────────────────────────────── */
+    .market-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:1.25rem; margin-top:1rem; }
+    .market-card {
+      background:#fff; border-radius:var(--radius-xl); border:1px solid #e2e8f0;
+      padding:1.5rem; display:flex; flex-direction:column; transition:all .2s;
+    }
+    .market-card:hover { transform:translateY(-3px); border-color:#3b82f6; box-shadow:0 10px 15px -3px rgba(0,0,0,0.1); }
+    .market-header { display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem; }
+    .market-icon { width:2.5rem; height:2.5rem; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.25rem; flex-shrink:0; }
+    .market-title { font-size:0.95rem; font-weight:700; color:#0f172a; }
+    .market-desc { font-size:0.8rem; color:#64748b; line-height:1.5; flex:1; margin-bottom:1.25rem; }
+    .market-footer { display:flex; align-items:center; justify-content:space-between; padding-top:1rem; border-top:1px solid #f1f5f9; }
+    .market-price { font-size:1rem; font-weight:700; color:#0f172a; }
+    .market-price span { font-size:0.75rem; font-weight:500; color:#94a3b8; }
+    
+    .status-pill { font-size:0.7rem; font-weight:700; padding:0.2rem 0.6rem; border-radius:999px; text-transform:uppercase; }
+    .status-pill.active { background:#dcfce7; color:#166534; }
+    .status-pill.locked { background:#f1f5f9; color:#64748b; }
+
+    @media(max-width:768px) {
+      .dash-sidebar { width:60px; }
+      .dash-nav a span, .dash-nav-section, .sidebar-user-name, .sidebar-user-email { display:none; }
+      .kpi-grid { grid-template-columns:1fr 1fr; }
+      .quick-actions { grid-template-columns:1fr 1fr; }
+    }
+  </style>
+</head>
+<body style="background:#f8fafc;min-height:100vh;">
+
+<div class="dash-layout">
+
+  <!-- ── Sidebar ──────────────────────────────────────────────────── -->
+  <aside class="dash-sidebar">
+    <a href="../index.html" class="dash-sidebar-logo">
+      <div class="logo-icon" style="width:1.85rem;height:1.85rem;font-size:0.9rem;">F</div>
+      <span>FINBI Portal</span>
+    </a>
+
+    <nav class="dash-nav">
+      <div class="dash-nav-section">Main</div>
+      <a href="dashboard.html" class="active" id="navDashboard">
+        <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><rect x="1.5" y="1.5" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="9" y="1.5" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="1.5" y="9" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="9" y="9" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.4"/></svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="#" id="navLicense">
+        <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><rect x="2" y="5" width="12" height="9" rx="1.2" stroke="currentColor" stroke-width="1.4"/><path stroke="currentColor" stroke-width="1.4" d="M5 5V4a3 3 0 016 0v1"/><circle cx="8" cy="9.5" r="1.5" fill="currentColor"/></svg>
+        <span>License</span>
+      </a>
+      <a href="#" id="navDownload">
+        <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-width="1.4" stroke-linecap="round" d="M8 2v8M5 8l3 3 3-3"/><path stroke="currentColor" stroke-width="1.4" stroke-linecap="round" d="M2 13h12"/></svg>
+        <span>Download App</span>
+      </a>
+      <a href="#marketplace" id="navMarket">
+        <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-width="1.4" d="M3 3h10v10H3zM3 6h10M6 3v10"/></svg>
+        <span>Marketplace</span>
+      </a>
+
+      <div class="dash-nav-section">Business</div>
+      <a href="https://app.finbi.in" target="_blank" id="navApp" rel="noopener">
+        <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><rect x="2" y="3" width="12" height="10" rx="1.2" stroke="currentColor" stroke-width="1.4"/><path stroke="currentColor" stroke-width="1.4" d="M5 7h6M5 10h4"/></svg>
+        <span>Open App ↗</span>
+      </a>
+      <a href="#" id="navBilling">
+        <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><rect x="2" y="4" width="12" height="9" rx="1" stroke="currentColor" stroke-width="1.4"/><path stroke="currentColor" stroke-width="1.4" d="M2 8h12"/><circle cx="5.5" cy="11" r="0.75" fill="currentColor"/></svg>
+        <span>Billing</span>
+      </a>
+
+      <div class="dash-nav-section">Account</div>
+      <a href="#" id="navProfile">
+        <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="5.5" r="2.5" stroke="currentColor" stroke-width="1.4"/><path stroke="currentColor" stroke-width="1.4" d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+        <span>Profile &amp; Settings</span>
+      </a>
+      <a href="#" id="navSupport">
+        <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"/><path stroke="currentColor" stroke-width="1.4" d="M6 6a2 2 0 113.4 1.4c-.4.4-.9.8-.9 1.6"/><circle cx="8.25" cy="11.25" r="0.75" fill="currentColor"/></svg>
+        <span>Help &amp; Support</span>
+      </a>
+    </nav>
+
+    <!-- Sidebar user card -->
+    <div class="sidebar-user" id="sidebarUser">
+      <div style="width:2rem;height:2rem;border-radius:50%;background:rgba(59,130,246,.2);display:flex;align-items:center;justify-content:center;font-weight:700;color:#93c5fd;font-size:0.875rem;flex-shrink:0;" id="sidebarInitial">?</div>
+      <div style="min-width:0;">
+        <div class="sidebar-user-name" id="sidebarName">Loading...</div>
+        <div class="sidebar-user-email" id="sidebarEmail"></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── Main content ─────────────────────────────────────────────── -->
+  <div class="dash-main">
+
+    <!-- Top bar -->
+    <div class="dash-topbar">
+      <div style="display:flex;align-items:center;gap:0.625rem;">
+        <h1 style="font-size:1rem;font-weight:700;color:#0f172a;" id="pageTitle">Dashboard</h1>
+        <span class="badge badge-gray" id="pageBadge" style="display:none;"></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.875rem;">
+        <!-- Greeting -->
+        <div style="font-size:0.8rem;color:#64748b;" id="topbarGreeting"></div>
+        <!-- Avatar -->
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <div style="width:2rem;height:2rem;border-radius:50%;background:linear-gradient(135deg,#dbeafe,#eff6ff);display:flex;align-items:center;justify-content:center;font-weight:700;color:#1d4ed8;font-size:0.875rem;" id="avatarInitial">?</div>
+          <span style="font-size:0.875rem;font-weight:500;color:#374151;" id="topbarName">Loading...</span>
+        </div>
+        <button onclick="logout()" style="font-size:0.8rem;color:#94a3b8;background:none;border:1px solid #e2e8f0;padding:0.35rem 0.75rem;border-radius:0.5rem;transition:all .15s;cursor:pointer;" onmouseover="this.style.color='#ef4444';this.style.borderColor='#fecaca'" onmouseout="this.style.color='#94a3b8';this.style.borderColor='#e2e8f0'">
+          Sign out
+        </button>
+      </div>
+    </div>
+
+    <!-- Dashboard content -->
+    <div class="dash-content">
+      <div class="alert" id="mainAlert" style="max-width:100%;margin-bottom:1rem;"></div>
+
+      <!-- Trial banner -->
+      <div id="trialBanner" style="display:none;background:linear-gradient(135deg,#fffbeb,#fef3c7);border:1px solid #fcd34d;border-radius:var(--radius-xl);padding:1rem 1.25rem;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;">
+        <div>
+          <div style="font-weight:700;color:#92400e;font-size:0.9rem;" id="bannerTitle">Trial expires soon</div>
+          <div style="font-size:0.8rem;color:#b45309;margin-top:0.125rem;" id="bannerSub">Activate your license to continue using FINBI.</div>
+        </div>
+        <a href="../pages/pricing.html" class="btn btn-sm" style="background:#f59e0b;color:white;border:none;">Upgrade Now →</a>
+      </div>
+
+      <!-- KPI cards -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-icon" id="kpiStatusIcon">⏳</div>
+          <div class="kpi-label">License</div>
+          <div class="kpi-value" id="kpiStatus">—</div>
+          <div class="kpi-sub" id="kpiStatusSub"></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon">📅</div>
+          <div class="kpi-label">Days Left</div>
+          <div class="kpi-value" id="kpiDays">—</div>
+          <div class="kpi-sub" id="kpiDaysSub"></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon">📦</div>
+          <div class="kpi-label">App Version</div>
+          <div class="kpi-value" id="kpiVersion" style="font-size:1.15rem;">—</div>
+          <div class="kpi-sub" id="kpiVersionSub"></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon">🌐</div>
+          <div class="kpi-label">Location</div>
+          <div class="kpi-value" style="font-size:0.9rem;margin-top:0.25rem;" id="kpiLocation">—</div>
+          <div class="kpi-sub" id="kpiPlan"></div>
+        </div>
+      </div>
+
+      <!-- Marketplace Section -->
+      <div id="marketplace" class="section-container" style="margin-bottom:2rem;">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title" style="font-size:1.1rem;">SaaS Add-Ons Marketplace</h2>
+            <p class="section-sub">Extend your accounting with specialized modules</p>
+          </div>
+          <div id="marketSummary" style="font-size:0.75rem; color:#64748b;"></div>
+        </div>
+        <div class="market-grid" id="marketGrid">
+          <!-- Dynamically populated -->
+          <div class="loading-state">Loading marketplace...</div>
+        </div>
+      </div>
+
+      <!-- Row 1: License + Quick Actions -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem;">
+
+        <!-- License Status card -->
+        <div class="card" style="padding:1.5rem;">
+          <div class="section-header">
+            <div>
+              <div class="section-title">License Status</div>
+              <div class="section-sub">Your subscription &amp; trial info</div>
+            </div>
+            <span class="badge" id="statusBadge">Loading...</span>
+          </div>
+
+          <!-- Trial section -->
+          <div id="trialSection" style="display:none;">
+            <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:0.375rem;color:#374151;">
+              <span>Trial progress</span>
+              <span id="daysLeftText" style="font-weight:600;"></span>
+            </div>
+            <div class="progress-wrap" style="margin-bottom:0.5rem;">
+              <div class="progress-fill" id="trialProgress" style="width:0%;"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:#94a3b8;margin-bottom:1.25rem;">
+              <span>Started <span id="trialStartDate"></span></span>
+              <span>Expires <span id="trialExpireDate"></span></span>
+            </div>
+            <a href="../pages/pricing.html" class="btn btn-primary btn-sm btn-full" style="justify-content:center;">Purchase License — ₹4,999 →</a>
+          </div>
+
+          <!-- Active section -->
+          <div id="activeSection" style="display:none;">
+            <div style="display:flex;align-items:center;gap:0.75rem;padding:0.875rem;background:#f0fdf4;border-radius:0.75rem;margin-bottom:1rem;">
+              <div style="width:2.25rem;height:2.25rem;border-radius:50%;background:#d1fae5;display:flex;align-items:center;justify-content:center;color:#065f46;font-size:1.1rem;flex-shrink:0;">✓</div>
+              <div>
+                <div style="font-weight:600;color:#065f46;font-size:0.875rem;">License Active</div>
+                <div style="font-size:0.775rem;color:#16a34a;">Valid until <span id="activeExpireDate"></span></div>
+              </div>
+            </div>
+            <div style="font-size:0.775rem;color:#94a3b8;word-break:break-all;">Key: <span id="licenseKeyDisplay" style="font-family:monospace;color:#374151;"></span></div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="card" style="padding:1.5rem;">
+          <div class="section-header">
+            <div>
+              <div class="section-title">Quick Actions</div>
+              <div class="section-sub">Common tasks at a glance</div>
+            </div>
+          </div>
+          <div class="quick-actions">
+            <a href="https://app.finbi.in" target="_blank" class="qa-btn" rel="noopener">
+              <span class="qa-icon">🚀</span>Open App
+            </a>
+            <button onclick="document.getElementById('activateSection').scrollIntoView({behavior:'smooth'})" class="qa-btn">
+              <span class="qa-icon">🔑</span>Activate Key
+            </button>
+            <button onclick="downloadApp('windows')" class="qa-btn">
+              <span class="qa-icon">🪟</span>Download
+            </button>
+            <a href="../pages/pricing.html" class="qa-btn">
+              <span class="qa-icon">💎</span>Upgrade
+            </a>
+            <a href="mailto:support@fulwariya.in" class="qa-btn">
+              <span class="qa-icon">💬</span>Support
+            </a>
+            <button onclick="logout()" class="qa-btn" style="color:#ef4444;">
+              <span class="qa-icon">🚪</span>Sign Out
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: Activate License + System Health -->
+      <div style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:1.25rem;margin-bottom:1.25rem;" id="activateSection">
+
+        <!-- Activate card -->
+        <div class="card" style="padding:1.5rem;">
+          <div class="section-header">
+            <div>
+              <div class="section-title">Activate License</div>
+              <div class="section-sub">Enter your purchased license key</div>
+            </div>
+          </div>
+          <div class="alert" id="activateAlert"></div>
+          <div style="display:flex;gap:0.625rem;margin-bottom:0.75rem;">
+            <input type="text" id="licenseKeyInput" class="form-input" style="font-family:monospace;text-transform:uppercase;letter-spacing:0.05em;flex:1;"
+              placeholder="XXXXX-XXXXX-XXXXX-XXXXX" maxlength="23"
+              oninput="formatKey(this)" />
+          </div>
+          <button id="activateBtn" onclick="activateLicense()" class="btn btn-success btn-full" style="height:2.5rem;">
+            ✓ Activate License Key
+          </button>
+          <div style="margin-top:0.875rem;padding:0.75rem;background:#f8fafc;border-radius:0.625rem;border:1px solid var(--border);font-size:0.775rem;color:#64748b;line-height:1.6;">
+            <strong style="color:#374151;">Don't have a key?</strong><br/>
+            Purchase at <a href="../pages/pricing.html" style="font-weight:600;">pricing</a> — secure payment, instant delivery to your email.
+          </div>
+        </div>
+
+        <!-- System health -->
+        <div class="card" style="padding:1.5rem;">
+          <div class="section-header">
+            <div>
+              <div class="section-title">System Status</div>
+              <div class="section-sub">Real-time health check</div>
+            </div>
+            <span style="font-size:0.72rem;color:#94a3b8;" id="healthTimestamp"></span>
+          </div>
+          <div id="healthRows">
+            <div class="health-row"><span class="health-label">API Server</span><span class="health-dot ok" id="healthApi">Checking...</span></div>
+            <div class="health-row"><span class="health-label">Auth Service</span><span class="health-dot ok" id="healthAuth">Checking...</span></div>
+            <div class="health-row"><span class="health-label">License Server</span><span class="health-dot ok" id="healthLicense">Checking...</span></div>
+            <div class="health-row"><span class="health-label">Download CDN</span><span class="health-dot ok" id="healthCdn">Checking...</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3: Download + Notifications -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem;">
+
+        <!-- Download card -->
+        <div class="card" style="padding:1.5rem;">
+          <div class="section-header">
+            <div>
+              <div class="section-title">Download FINBI Desktop</div>
+              <div class="section-sub" id="versionText">Fetching latest version...</div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.625rem;margin-bottom:1rem;">
+            <button onclick="downloadApp('windows')" class="btn btn-sm" style="background:#0f172a;color:white;gap:0.4rem;justify-content:center;flex-direction:column;height:3.5rem;">
+              <span style="font-size:1.2rem;">🪟</span><span style="font-size:0.7rem;">Windows</span>
+            </button>
+            <button onclick="downloadApp('mac')" class="btn btn-sm" style="background:#0f172a;color:white;gap:0.4rem;justify-content:center;flex-direction:column;height:3.5rem;">
+              <span style="font-size:1.2rem;">🍎</span><span style="font-size:0.7rem;">macOS</span>
+            </button>
+            <button onclick="downloadApp('linux')" class="btn btn-sm" style="background:#0f172a;color:white;gap:0.4rem;justify-content:center;flex-direction:column;height:3.5rem;">
+              <span style="font-size:1.2rem;">🐧</span><span style="font-size:0.7rem;">Linux</span>
+            </button>
+          </div>
+          <div style="font-size:0.75rem;color:#94a3b8;line-height:1.6;">Windows 10/11 · macOS 12+ · Ubuntu 20.04+</div>
+        </div>
+
+        <!-- Notifications -->
+        <div class="card" style="padding:1.5rem;">
+          <div class="section-header">
+            <div class="section-title">Notifications</div>
+            <span class="badge badge-blue" id="notifCount">0</span>
+          </div>
+          <div id="notifList">
+            <div style="font-size:0.8rem;color:#94a3b8;padding:0.5rem 0;">No notifications</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 4: Account Info -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
+
+        <!-- Account info -->
+        <div class="card" style="padding:1.5rem;">
+          <div class="section-header">
+            <div class="section-title">Account Information</div>
+            <button onclick="editProfile()" class="btn btn-ghost btn-sm" style="font-size:0.78rem;">Edit</button>
+          </div>
+          <div id="accountRows">
+            <div class="info-row"><span class="info-label">Full Name</span><span class="info-value" id="accountName">—</span></div>
+            <div class="info-row"><span class="info-label">Email</span><span class="info-value" id="accountEmail">—</span></div>
+            <div class="info-row"><span class="info-label">Phone</span><span class="info-value" id="accountPhone">—</span></div>
+            <div class="info-row"><span class="info-label">State</span><span class="info-value" id="accountState">—</span></div>
+            <div class="info-row"><span class="info-label">District</span><span class="info-value" id="accountDistrict">—</span></div>
+            <div class="info-row"><span class="info-label">City</span><span class="info-value" id="accountCity">—</span></div>
+            <div class="info-row"><span class="info-label">Pincode</span><span class="info-value" id="accountPincode">—</span></div>
+            <div class="info-row"><span class="info-label">Member Since</span><span class="info-value" id="accountCreated">—</span></div>
+            <div class="info-row"><span class="info-label">Plan</span><span class="info-value" id="accountPlan">—</span></div>
+          </div>
+          <button onclick="logout()" class="btn btn-ghost btn-sm btn-full" style="margin-top:1rem;color:#ef4444;border-color:#fecaca;" onmouseover="this.style.background='#fef2f2'" onmouseout="this.style.background=''">
+            Sign Out
+          </button>
+        </div>
+
+        <!-- Activity timeline -->
+        <div class="card" style="padding:1.5rem;">
+          <div class="section-header">
+            <div class="section-title">Activity</div>
+          </div>
+          <div class="timeline" id="activityTimeline">
+            <div style="font-size:0.8rem;color:#94a3b8;">Loading...</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /dash-content -->
+  </div><!-- /dash-main -->
+</div><!-- /dash-layout -->
+
+<script src="../js/app.js"></script>
+<script>
+if (!requireAuth()) { /* handled */ }
+
+const user = JSON.parse(localStorage.getItem('finbi_web_user') || sessionStorage.getItem('finbi_web_user') || '{}')
+
+// ── Greeting ─────────────────────────────────────────────────────
+function setGreeting() {
+  const h = new Date().getHours()
+  const g = h < 12 ? '🌤 Good morning' : h < 17 ? '☀️ Good afternoon' : '🌙 Good evening'
+  const el = document.getElementById('topbarGreeting')
+  if (el) el.textContent = g
+}
+setGreeting()
+
+// ── Populate user info ────────────────────────────────────────────
+function populateUser() {
+  const name = user.name || [user.first_name, user.last_name].filter(Boolean).join(' ') || '—'
+  const initial = name.charAt(0).toUpperCase() || '?'
+
+  document.getElementById('topbarName').textContent = name.split(' ')[0]
+  document.getElementById('avatarInitial').textContent = initial
+  document.getElementById('sidebarInitial').textContent = initial
+  document.getElementById('sidebarName').textContent = name
+  document.getElementById('sidebarEmail').textContent = user.email || ''
+
+  document.getElementById('accountName').textContent = name
+  document.getElementById('accountEmail').textContent = user.email || '—'
+  document.getElementById('accountPhone').textContent = user.phone || '—'
+  document.getElementById('accountState').textContent = user.state || '—'
+  document.getElementById('accountDistrict').textContent = user.district || '—'
+  document.getElementById('accountCity').textContent = user.city || '—'
+  document.getElementById('accountPincode').textContent = user.pincode || '—'
+  if (user.created_at) document.getElementById('accountCreated').textContent = formatDate(user.created_at)
+
+  // KPI location
+  const loc = [user.district, user.state].filter(Boolean).join(', ')
+  document.getElementById('kpiLocation').textContent = loc || '—'
+}
+populateUser()
+
+// ── Key formatter ─────────────────────────────────────────────────
+function formatKey(input) {
+  let v = input.value.replace(/[^A-Z0-9]/g, '').toUpperCase()
+  v = v.match(/.{1,5}/g)?.join('-') || v
+  if (v.length > 23) v = v.slice(0, 23)
+  input.value = v
+}
+
+// ── License status ────────────────────────────────────────────────
+async function loadLicenseStatus() {
+  try {
+    const data = await fetchAPI('/api/auth/me')
+    
+    // Sync geo fields
+    document.getElementById('accountState').textContent = data.state || '—'
+    document.getElementById('accountDistrict').textContent = data.city && data.city.includes('Dist.') ? data.city.split('Dist. ')[1] : '—'
+    document.getElementById('accountCity').textContent = data.city ? data.city.split(', Dist.')[0] : '—'
+    document.getElementById('accountPincode').textContent = data.pincode || '—'
+
+    const status = data.licenseType === 'lifetime' ? 'active' : (data.daysLeft > 0 ? 'trial' : 'expired')
+    const days_left = data.daysLeft || 0
+    const expires_at = data.trialEnds
+    const trial_start = new Date(new Date(data.trialEnds).getTime() - (90 * 86400000)).toISOString()
+    
+    const badge = document.getElementById('statusBadge')
+
+    document.getElementById('kpiStatus').textContent = status === 'active' ? 'Active' : status === 'trial' ? 'Trial' : 'Expired'
+    document.getElementById('kpiStatusIcon').textContent = status === 'active' ? '✅' : status === 'trial' ? '⏳' : '❌'
+
+    if (status === 'active') {
+      badge.textContent = '✓ Active'; badge.className = 'badge badge-green'
+      document.getElementById('activeSection').style.display = 'block'
+      document.getElementById('activeExpireDate').textContent = formatDate(expires_at)
+      if (data.license_key) document.getElementById('licenseKeyDisplay').textContent = data.license_key
+      document.getElementById('kpiDays').textContent = daysUntil(expires_at)
+      document.getElementById('kpiDaysSub').textContent = 'until license expires'
+      document.getElementById('accountPlan').innerHTML = '<span class="badge badge-green">Professional</span>'
+      document.getElementById('kpiPlan').textContent = 'Professional Plan'
+    } else if (status === 'trial') {
+      badge.textContent = `Trial · ${days_left}d left`
+      badge.className = days_left <= 14 ? 'badge badge-amber' : 'badge badge-blue'
+      document.getElementById('trialSection').style.display = 'block'
+      document.getElementById('daysLeftText').textContent = `${days_left} day${days_left !== 1 ? 's' : ''} left`
+      document.getElementById('trialStartDate').textContent = formatDate(trial_start)
+      document.getElementById('trialExpireDate').textContent = formatDate(expires_at)
+      document.getElementById('trialProgress').style.width = Math.max(0, Math.min(100, (90 - days_left) / 90 * 100)) + '%'
+      document.getElementById('kpiDays').textContent = days_left
+      document.getElementById('kpiDaysSub').textContent = 'days left in trial'
+      document.getElementById('accountPlan').innerHTML = '<span class="badge badge-blue">Free Trial</span>'
+      document.getElementById('kpiPlan').textContent = 'Free Trial'
+      if (days_left <= 14) {
+        const banner = document.getElementById('trialBanner')
+        banner.style.display = 'flex'
+        document.getElementById('bannerTitle').textContent = `⚠️ ${days_left} days left in your trial`
+        document.getElementById('bannerSub').textContent = 'Purchase a license to continue. All data is preserved.'
+      }
+    } else {
+      badge.textContent = 'Expired'; badge.className = 'badge badge-red'
+      document.getElementById('trialSection').style.display = 'block'
+      document.getElementById('daysLeftText').textContent = '0 days left'
+      document.getElementById('trialProgress').style.width = '100%'
+      document.getElementById('kpiDays').textContent = '0'
+      document.getElementById('kpiDaysSub').textContent = 'trial expired'
+      document.getElementById('accountPlan').innerHTML = '<span class="badge badge-red">Expired</span>'
+      const banner = document.getElementById('trialBanner')
+      banner.style.display = 'flex'; banner.style.background = 'linear-gradient(135deg,#fef2f2,#fee2e2)'; banner.style.borderColor = '#fca5a5'
+      document.getElementById('bannerTitle').textContent = '🔒 Trial expired'
+      document.getElementById('bannerSub').textContent = 'Activate a license key to continue.'
+    }
+  } catch {
+    document.getElementById('statusBadge').textContent = 'Offline'
+    document.getElementById('kpiStatus').textContent = 'Offline'
+  }
+}
+
+// ── System health check ──────────────────────────────────────────
+async function checkHealth() {
+  document.getElementById('healthTimestamp').textContent = new Date().toLocaleTimeString('en-IN')
+  const setHealth = (id, ok, label) => {
+    const el = document.getElementById(id)
+    el.textContent = ok ? label || 'Operational' : 'Degraded'
+    el.className = `health-dot ${ok ? 'ok' : 'warn'}`
+  }
+  try {
+    const res = await fetch('https://api.fulwariya.in/health', { signal: AbortSignal.timeout(4000) })
+    setHealth('healthApi', res.ok)
+    setHealth('healthAuth', res.ok)
+    setHealth('healthLicense', res.ok)
+    setHealth('healthCdn', res.ok, 'Available')
+  } catch {
+    setHealth('healthApi', false)
+    setHealth('healthAuth', false)
+    setHealth('healthLicense', false)
+    setHealth('healthCdn', true, 'Available')
+  }
+}
+
+// ── Notifications ─────────────────────────────────────────────────
+function renderNotifications() {
+  const notifs = [
+    { type:'success', text:'Your account has been created successfully.', time:'Just now' },
+    { type:'info', text:'FINBI v1.0 is available for download. Get started today!', time:'Today' },
+    { type:'warn', text:'Remember to download the desktop app for the best experience.', time:'Today' },
+  ]
+  const list = document.getElementById('notifList')
+  list.innerHTML = notifs.map(n => `
+    <div class="notif-item">
+      <div class="notif-dot ${n.type}"></div>
+      <div>
+        <div class="notif-text">${n.text}</div>
+        <div class="notif-time">${n.time}</div>
+      </div>
+    </div>
+  `).join('')
+  document.getElementById('notifCount').textContent = notifs.length
+}
+
+// ── Download info ─────────────────────────────────────────────────
+async function loadDownloadInfo() {
+  try {
+    const data = await fetchAPI('/api/downloads/latest')
+    const ver = data.version || 'v1.0.0'
+    document.getElementById('kpiVersion').textContent = ver
+    document.getElementById('kpiVersionSub').textContent = data.released_at ? `Released ${formatDate(data.released_at)}` : 'Latest stable'
+    document.getElementById('versionText').textContent = `Latest: ${ver} · ${data.released_at ? formatDate(data.released_at) : 'Stable release'}`
+  } catch {
+    document.getElementById('kpiVersion').textContent = 'v1.0.0'
+    document.getElementById('kpiVersionSub').textContent = 'Latest stable'
+    document.getElementById('versionText').textContent = 'Latest stable release'
+  }
+}
+
+// ── Activity timeline ─────────────────────────────────────────────
+function renderActivity() {
+  const items = [
+    { label:'Account created', sub: user.created_at ? formatDate(user.created_at) : 'Recently', done:true },
+    { label:'90-day trial started', sub:'Full access to all features', done:true },
+    { label:'Download desktop app', sub:'Install FINBI on your computer', done:false },
+    { label:'Activate license', sub:'After purchase — enter license key', done:false },
+  ]
+  const el = document.getElementById('activityTimeline')
+  el.innerHTML = items.map(it => `
+    <div class="timeline-item${it.done ? '' : ' dim'}">
+      <div class="timeline-dot"></div>
+      <div style="font-size:0.825rem;font-weight:600;color:${it.done ? '#0f172a' : '#94a3b8'};">${it.label}</div>
+      <div style="font-size:0.75rem;color:#94a3b8;margin-top:0.1rem;">${it.sub}</div>
+    </div>
+  `).join('')
+}
+
+// ── Activate license ──────────────────────────────────────────────
+async function activateLicense() {
+  const key = document.getElementById('licenseKeyInput').value.trim().toUpperCase()
+  const alertEl = document.getElementById('activateAlert')
+  const btn = document.getElementById('activateBtn')
+  hideAlert(alertEl)
+  if (!key || key.replace(/-/g,'').length < 20) { showAlert(alertEl, 'Enter a valid 20-character license key.'); return }
+  const orig = btn.textContent
+  setButtonLoading(btn, true, orig)
+  try {
+    await fetchAPI('/api/license/activate', { method: 'POST', body: { key } })
+    showAlert(alertEl, '✓ License activated! Reloading...', 'success')
+    setTimeout(() => location.reload(), 1500)
+  } catch (err) {
+    showAlert(alertEl, err.message || 'Activation failed. Check your key and try again.')
+    setButtonLoading(btn, false, orig)
+  }
+}
+
+// ── Download ──────────────────────────────────────────────────────
+async function downloadApp(platform) {
+  try {
+    const data = await fetchAPI(`/api/downloads/latest?platform=${platform}`)
+    if (data.url) window.open(data.url, '_blank')
+    else showAlert(document.getElementById('mainAlert'), 'Download link coming soon! Check back shortly.', 'info')
+  } catch {
+    showAlert(document.getElementById('mainAlert'), 'Downloads will be available at public launch. Stay tuned!', 'info')
+  }
+}
+
+// ── Edit profile (placeholder) ────────────────────────────────────
+function editProfile() {
+  showAlert(document.getElementById('mainAlert'), '✏️ Profile editing coming soon. Contact support@fulwariya.in to update your details.', 'info')
+}
+
+// ── Marketplace Logic ────────────────────────────────────────────
+const MODULE_METADATA = [
+  { id: 'pos', name: 'Point of Sale', emoji: '🛒', color: '#3b82f6', desc: 'Retail interface, barcode scanning, thermal printing, and multi-counter support.', price: 1499 },
+  { id: 'mrp', name: 'Manufacturing (MRP)', emoji: '🏭', color: '#10b981', desc: 'Bill of Materials (BOM), Production Orders, Stock Consumption, and Cost Tracking.', price: 2999 },
+  { id: 'payroll', name: 'Professional Payroll', emoji: '👥', color: '#8b5cf6', desc: 'Employee tracking, Payslips, PF/ESI calculations, and Journal Auto-Posting.', price: 1999 },
+  { id: 'ecommerce', name: 'E-Commerce Sync', emoji: '🌐', color: '#f59e0b', desc: 'Sync orders from Amazon, Flipkart, & Shopify directly into your Ledger.', price: 2499 },
+  { id: 'projects', name: 'Project Costing', emoji: '🏗️', color: '#ec4899', desc: 'Track profitability by project. Task management, time tracking, and expense tagging.', price: 999 }
+]
+
+async function loadMarketplace() {
+  const container = document.getElementById('marketGrid')
+  try {
+    const sub = await fetchAPI('/api/subscriptions/status')
+    const activeCount = Object.keys(sub).filter(k => k.startsWith('has_') && sub[k]).length
+    document.getElementById('marketSummary').textContent = `${activeCount} module(s) active`
+
+    container.innerHTML = MODULE_METADATA.map(mod => {
+      const isActive = sub[`has_${mod.id}`]
+      return `
+        <div class="market-card">
+          <div class="market-header">
+            <div class="market-icon" style="background:${mod.color}15; color:${mod.color}">${mod.emoji}</div>
+            <div class="market-title">${mod.name}</div>
+            <div style="margin-left:auto;">
+              ${isActive ? '<span class="status-pill active">Active</span>' : '<span class="status-pill locked">Locked</span>'}
+            </div>
+          </div>
+          <div class="market-desc">${mod.desc}</div>
+          <div class="market-footer">
+            <div class="market-price">₹${mod.price.toLocaleString()}<span>/year</span></div>
+            ${isActive 
+              ? `<button class="btn btn-ghost btn-sm" disabled style="opacity:0.5; color:#166534;">✓ Purchased</button>` 
+              : `<button class="btn btn-primary btn-sm" onclick="purchaseModule('${mod.id}', ${mod.price})">Activate →</button>`
+            }
+          </div>
+        </div>
+      `
+    }).join('')
+  } catch (err) {
+    container.innerHTML = '<div style="color:#ef4444; font-size:0.8rem;">Failed to load marketplace status.</div>'
+  }
+}
+
+async function purchaseModule(id, price) {
+  if (!confirm(`Confirm purchase of ${id.toUpperCase()} Add-On for ₹${price.toLocaleString()}?`)) return
+  
+  try {
+    const res = await fetchAPI('/api/subscriptions/purchase', {
+      method: 'POST',
+      body: { module: id, amount: price }
+    })
+    showAlert(document.getElementById('mainAlert'), res.message, 'success')
+    loadMarketplace()
+    loadLicenseStatus() // Update KPI/Account info
+  } catch (err) {
+    showAlert(document.getElementById('mainAlert'), err.message || 'Purchase failed')
+  }
+}
+
+// ── Init ───────────────────────────────────────────────────────────
+renderActivity()
+renderNotifications()
+loadLicenseStatus()
+loadDownloadInfo()
+checkHealth()
+loadMarketplace()
+</script>
+</body>
+</html>
+
+

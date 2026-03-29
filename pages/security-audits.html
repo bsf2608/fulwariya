@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Audits | Fulwariya Technologies</title>
+    <link rel="stylesheet" href="../css/landing.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="shape shape-1" style="background:var(--accent-2)"></div>
+        <div class="shape shape-2" style="background:var(--accent-1)"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="nav-content">
+            <a href="../index.html" class="logo"><i class="fa-solid fa-layer-group"></i><span>Fulwariya Tech</span></a>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-text-link">Home</a>
+                <a href="../index.html#services" class="nav-text-link" style="color:var(--accent-2)">Services</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero" style="min-height: 50vh; padding-top: 150px; padding-bottom: 20px;">
+        <div class="hero-content">
+            <div class="badge"><i class="fa-solid fa-shield-halved"></i> Enterprise Protection</div>
+            <h1>Zero-Trust <span class="gradient-text">Security</span></h1>
+            <p>From EncryptedSharedPreferences to complete Database Isolation.</p>
+        </div>
+    </header>
+
+    <section class="section-container" style="padding-top: 20px; padding-bottom: 100px;">
+        <div class="glass-panel" style="max-width: 900px; margin: 0 auto;">
+            <p style="font-size: 1.15rem; color: var(--text-muted); margin-bottom: 40px; text-align: center; line-height: 1.8;">
+                At Fulwariya Technologies, security is not an afterthought—it is the foundational layer of every web, mobile, and desktop application we build. Our offline-first strategies ensure maximum data sovereignty.
+            </p>
+
+            <div class="grid-container" style="gap: 20px;">
+                <div class="card glass-card" style="padding: 30px;">
+                    <div class="card-icon" style="background: rgba(16, 185, 129, 0.1); color: #10b981; margin-bottom: 15px;"><i class="fa-solid fa-key"></i></div>
+                    <h3 style="font-size: 1.2rem;">Data Isolation</h3>
+                    <p style="font-size: 0.95rem;">Strict tenant isolation at the database level for SaaS architectures, preventing horizontal cross-contamination of GST/financial data.</p>
+                </div>
+                <div class="card glass-card" style="padding: 30px;">
+                    <div class="card-icon" style="background: rgba(99, 102, 241, 0.1); color: #6366f1; margin-bottom: 15px;"><i class="fa-solid fa-server"></i></div>
+                    <h3 style="font-size: 1.2rem;">Local Encryption</h3>
+                    <p style="font-size: 0.95rem;">Utilizing EncryptedSharedPreferences and SQLiteCipher to guarantee that offline data cannot be compromised via reverse engineering.</p>
+                </div>
+                <div class="card glass-card" style="padding: 30px;">
+                    <div class="card-icon" style="background: rgba(236, 72, 153, 0.1); color: #ec4899; margin-bottom: 15px;"><i class="fa-solid fa-users-gear"></i></div>
+                    <h3 style="font-size: 1.2rem;">Granular RBAC</h3>
+                    <p style="font-size: 0.95rem;">Implementation of complex middleware allowing strict Role-Based Access Controls down to individual UI components and API requests.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo" style="justify-content: center; margin-bottom: 10px; font-size: 1.2rem;">
+                <i class="fa-solid fa-layer-group"></i> Fulwariya Tech
+            </div>
+            <p>&copy; 2026 Fulwariya Technologies.</p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.querySelector('.glass-nav').style.background = window.scrollY > 50 ? 'rgba(10, 10, 15, 0.95)' : 'rgba(255, 255, 255, 0.03)';
+            document.querySelector('.glass-nav').style.boxShadow = window.scrollY > 50 ? '0 10px 30px rgba(0,0,0,0.5)' : 'none';
+        });
+    </script>
+</body>
+</html>
+
+
